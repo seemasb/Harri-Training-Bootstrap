@@ -1,0 +1,459 @@
+@font-face {
+    font-family: font800;
+    src: url(fonts/ExtraBold.ttf);
+  }
+
+  @font-face {
+    font-family: font600;
+    src: url(fonts/SemiBold.ttf);
+  }
+
+  @font-face {
+    font-family: font300;
+    src: url(fonts/Light.ttf);
+  }
+
+  body {
+    padding: 0px;
+    margin: 0px;
+    font-family: font300;;
+}
+
+.demo-bg {
+    opacity: 0.3;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: auto;
+    z-index: 100;
+  }
+
+  
+.header{
+    height: 80px;
+    padding-left: 69px;
+    padding-right: 69px;
+}
+
+.title{
+    font-size: 1.5em;
+    font-family: font800;
+}
+
+.darkMode {
+    font-family: font600;
+    border: none;
+    background-color: #ffffff00;
+    padding-right: 0px;
+    padding-left: 0px;
+}
+
+.dropdown, .dropdown-center, .dropend, .dropstart, .dropup, .dropup-center {
+    position: relative;
+    display: inline-block;
+    width: fit-content;
+    float: right;
+}
+
+.input-group {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    /* align-items: stretch; */
+    /* width: 37%; */
+    width: 480px;
+    /* min-width: 300px; */
+    display: inline-flex;
+}
+
+.SearchBar {
+    padding: 0px 0 0px 75px;
+    width: 32%;
+    /* min-width: 330px; */
+    height: 55px;
+    /* line-height: inherit; */
+    /* min-width: 368px; */
+    font-family: font600;
+    font-size: 14px;
+    border: none;
+    box-shadow: 0px 1px 20px #cfcfcf9c;
+    border-radius: 4px;
+}
+
+.search {
+    position: absolute;
+    padding: 17px 0px 0 27px;
+    color: #858585;
+    min-width: 50px;
+    text-align: center;
+    z-index: 100;
+}
+
+.drop_list{
+    width: 201px;
+    height: 55px;
+    background-color: white;
+    color: black;
+    font-family: font600;
+    border: none;
+    padding: 0 41px 0 0px;
+    font-size: 14px;
+}
+/* .drop_list {
+    width: 170px;
+    height: 55px;
+    background-color: white;
+    color: black;
+    font-family: font600;
+    border: none;
+    padding: 0 20px 0 0px;
+    font-size: 14px;
+} */
+
+
+
+  .CardsSection{
+    /* padding-left: 17px;
+    padding-right: 17px; */
+    margin-top: 32px;
+  }
+
+  .card-img-top{
+    height: 161px;
+    object-fit: cover;
+  }
+
+  .h-100 {
+    height: 105%!important;
+}
+
+.g-5, .gx-5 {
+    --bs-gutter-x: 4.5rem;
+}
+
+.CountryInfo {
+    display: flex;
+    flex-direction: column;
+    row-gap: 3px;
+    font-family: font300;
+    font-size: 14px;
+    padding-top: 14px;
+}
+
+.country_name {
+    font-family: font800;
+    font-size: 18px;
+}
+
+.card-body {
+    flex: 1 1 auto;
+    padding: var(--bs-card-spacer-y) var(--bs-card-spacer-x);
+    color: var(--bs-card-color);
+    padding-top: 21px;
+    padding-left: 25px;
+}
+.semiBold{
+    font-family: font600;
+}
+
+.MainSection{
+    padding-top: 49px;
+    background-color: #fafafa;
+    padding-left: 69px;
+    padding-right: 69px;
+}
+
+.RowGap{
+    row-gap: 52px;
+}
+
+/* ////////////////////////////////////////////////// */
+@media only screen and (max-width: 1392px){
+    .g-5, .gx-5 {
+        --bs-gutter-x: 1rem;
+    }
+}
+
+@media only screen and (max-width: 575px){
+.card {
+    max-width: 262px;
+    margin: auto;
+}
+.g-5, .gx-5 {
+    --bs-gutter-x: 1.5rem;
+}
+.RowGap{
+    row-gap: 18px;
+}
+
+
+}
+
+@media only screen and (max-width: 842px){
+    /* .header{
+        padding-left: 4px;
+        padding-right: 4px;
+    } */
+
+    .SearchBar {
+        width: 78%;
+        margin: auto;
+        /* height: 46px; */
+        min-width: 250px;
+        height: 50px;
+        font-size: 12px;
+    }
+
+    .drop_list {
+        height: 50px;
+        font-size: 12px;
+        float: none;
+    }
+    .input-group {
+        position: relative;
+        display: flex;
+        flex-wrap: wrap;
+        /* align-items: stretch; */
+        width: 100%;
+        /* width: 480px; */
+        /* min-width: 300px; */
+        display: inline-flex;
+    }
+
+    .SearchANDdrop{
+        display: flex;
+        flex-direction: column;
+        row-gap: 23px;
+    }
+
+    .MainSection{
+        padding-top: 22px;
+        padding-left: 4px;
+        padding-right: 4px;
+    }
+
+    /* .darkMode {
+        font-size: 0.78em;
+      
+    }
+    
+    .title {
+        font-size: 0.86em;
+    } */
+
+}
+
+
+/* /////////////////////////////////////////////////////////////////// */
+
+.MainSectionInfo {
+    padding-left: 79px;
+    padding-top: 79px;
+    padding-right: 79px;
+    height: 100vh;
+}
+
+.InfoImg{
+    width: 89%;
+    margin: auto;
+    height: 107%;
+    object-fit: cover;
+}
+
+.CountryDetails{   
+    padding-top: 6%;
+    padding-left: 27px;
+}
+
+.CountryDetails12 {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    /* column-gap: 125px; */
+    padding-top: 4%;
+    font-size: 1rem;
+}
+.CountryDetails1 {
+    display: flex;
+    flex-direction: column;
+    row-gap: 8px;
+}
+.CountryDetails2 {
+    display: flex;
+    flex-direction: column;
+    row-gap: 8px;
+}
+.borders{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding-top: 44px;
+    column-gap: 10px;
+    margin-bottom: 40px;
+}
+
+.Info_country_name {
+    font-family: font800;
+    font-size: 2rem;
+}
+
+.button {
+    box-shadow: 1px 1px 8px rgb(141 141 141 / 74%);
+    padding: 9px 36px 9px 28px;
+    width: 135px;
+    height: 43px;
+    border: none;
+    background-color: white;
+    font-size: 15px;
+    color: #5c5c5c;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-bottom: 6%;
+}
+
+.CountryBox {
+    display: inline-block;
+    /* border: 1px solid gray; */
+    box-shadow: 1px 0px 4px rgb(168 168 168 / 74%);
+    /* padding: 1px 12px 1px 12px; */
+    margin-right: 5px;
+    width: 97px;
+    height: fit-content;
+    text-align: center;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    border-radius: 3px;
+    font-family: 'font600';
+}
+
+a:link {
+    text-decoration: inherit;
+    color: inherit;
+    cursor: pointer;
+}
+
+a:visited {
+    text-decoration: inherit;
+    color: inherit;
+    cursor: pointer;
+}
+
+
+
+@media only screen and (max-width: 991px){
+    .CountryDetails {
+        row-gap: 19px;
+    }
+    .CountryDetails12 {
+        row-gap: 34px;
+    }
+    
+   
+    .CountryBox {
+        width: 63px;
+        font-size: 10px;
+    } 
+    .InfoImg {
+        width: 96%;
+        margin: auto;
+        height: 70%;
+        max-height: 310px;
+        object-fit: cover;
+    }
+    
+}
+
+
+@media only screen and (max-width: 1152px){
+    .InfoImg {
+        width: 96%;
+        margin: auto;
+        max-height: 350px;
+        object-fit: cover;
+    }
+    .Info_country_name {
+        font-size: 27px;
+    }
+    .CountryDetails12 {
+        font-size: 13px;
+    }
+    .borders {
+        font-size: 13px;
+        row-gap: 10px;
+    }
+}
+
+@media only screen and (max-width:767px){
+    .header{
+        padding-left: 4px;
+        padding-right: 4px;
+    }
+
+    .darkMode {
+        font-size: 0.78em;
+      
+    }
+    
+    .title {
+        font-size: 0.86em;
+    }
+
+    .MainSectionInfo {
+        padding-left: 27px;
+        padding-right: 27px;
+        padding-top: 40px;
+    }
+
+    .button {
+        padding: 6px 14px 9px 13px;
+        width: 105px;
+        height: 34px;
+        margin-bottom: 62px;
+    }
+    
+    .InfoImg {
+        width: 100%;
+        height: 229px;
+    }
+    /* .InfoImg {
+        width: 100%;
+        height: 280px;
+    } */
+    .CountryDetails12 {
+        padding-top: 6%;
+        font-size: 14px;
+        row-gap: 42px;
+    }
+    .CountryDetails {
+        padding-top: 44px;
+        padding-left: 0px;
+    }
+    .Info_country_name {
+        font-size: 22px;
+    }
+
+    .CountryDetails1 {
+        row-gap: 11px;
+    }
+    .CountryDetails2 {
+        row-gap: 11px;
+    }
+
+    .borders {
+        padding-top: 34px;
+        row-gap: 18px;
+    }
+    .CountryBox {
+        width: 97px;
+        font-size: 12px;
+    }
+}
+
+@media only screen and (min-width: 500px){
+    .MainSectionInfo{
+     padding-left: 91px;
+     padding-right: 91px;
+    }
+ }
