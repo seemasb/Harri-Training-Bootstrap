@@ -10,45 +10,91 @@
     <script src="https://kit.fontawesome.com/e3c1a62890.js" crossorigin="anonymous"></script>
     <link href="style.css" rel="stylesheet">
 </head>
+
 <body>
     <!-- <img class="demo-bg" src="images/mobileInfo.jpg"> -->
 
-    <nav class="navbar  header shadow-sm ">
-        <div class="container-fluid">
+    <header class="navbar header shadow-sm " id="Header">
+        <div class="container">
             <span class="title">Where in the world?</span>
-            <button type="button" class="darkMode">
+            <button type="button" class="darkMode" id="darkModeToggle">
                 <i class="fa-regular fa-moon fa-lg SearchIcon"></i>
                 <span>Dark Mode</span>
             </button>  
         </div>  
-    </nav>
+    </header>
 
-    <main  class="MainSectionInfo container-fluid">
+    <main  class="MainSectionInfo container">
 
-        <button type="button" class="btn btn-light button" onclick="window.location.href = 'Index.html';"><i class="fa-solid fa-arrow-left-long"></i><span style="padding-left: 14px;">Back</span></button>
+        <button type="button" class="btn btn-light button" onclick="window.location.href = 'Index.html';" id="BackBtn"><i class="fa-solid fa-arrow-left-long"></i><span style="padding-left: 14px;">Back</span></button>
 
-        <div class="row">
-            <div class="col-lg-6 col-md-7 col-sm-12">
-                <img src="images/de.svg" alt="Germany" class="InfoImg" >
+        <div class="row" id="InfoContainer">
+           
             </div>
-            <div class="col-lg-6 col-md-5 col-sm-12">
+        </div>
+    </main>
+    
+</body>
+</html>
+
+
+<script>
+    var queryString = location.search.substring(1);
+    console.log("Country name: ")
+    console.log(queryString);
+    const InfoUrl = 'https://restcountries.com/v3.1/name/'+queryString;
+
+    async function getData() { 
+        // console.log(InfoUrl)
+          await fetch(InfoUrl)
+          .then((response) => response.json())
+          .then((data) => {console.log(data); DisplayInfo(data)});
+  }
+
+    function DisplayInfo(array){
+    const InfoContainer = document.getElementById('InfoContainer');
+    InfoContainer.innerHTML = '';
+    var InfoContent = '';
+    
+              // console.log(array[i]);
+              const CountryFlagImg = array[0].flags.svg;
+              const CountryName = array[0].name.common;
+              const Population = array[0].population;
+              const Region = array[0].region;
+              const SubRegion = array[0].subregion;
+              const Capital = array[0].capital;
+              const Currency = array[0].currencies.name;
+              console.log(array[0].currencies[0])
+              console.log(array[0].currencies.value)
+              console.log(array[0].currencies.key)
+
+              // if(DropDownValue != '' && array[i].region == DropDownValue){
+              //     //take the element
+              // }
+
+              InfoContent =
+                `
+                <div class="col-lg-6 col-md-7 col-sm-12">
+                <img src="${CountryFlagImg}" alt="Germany" class="InfoImg w-100 h-100" >
+            </div>
+            <div class="col-lg-6 col-sm-12">
                 
 
                 <div class="CountryDetails">
-                    <span class="Info_country_name">Belgiuim</span>  
+                    <span class="Info_country_name">${CountryName}</span>  
       
       
                     <div class="CountryDetails12">
                       <div class="CountryDetails1">
-                          <span><span class="semiBold">Native Name: </span>Belgie</span>
-                          <span><span class="semiBold">Population: </span>11,319,511</span>
-                          <span><span class="semiBold">Region: </span>Europe</span>
-                          <span><span class="semiBold">Sub Region: </span>Western Europe</span>
-                          <span><span class="semiBold">Capital: </span>Brussels</span>
+                          <span><span class="semiBold">Native Name: </span>${CountryName}</span>
+                          <span><span class="semiBold">Population: </span>${Population}</span>
+                          <span><span class="semiBold">Region: </span>${Region}</span>
+                          <span><span class="semiBold">Sub Region: </span>${SubRegion}</span>
+                          <span><span class="semiBold">Capital: </span>${Capital}</span>
                       </div>
                       <div class="CountryDetails2">
                           <span><span class="semiBold">Top Level Domain: </span>be</span>
-                          <span><span class="semiBold">Currencies: </span>Euro</span>
+                          <span><span class="semiBold">Currencies: </span>${Currency}</span>
                           <span><span class="semiBold">Languages: </span>Dutch,French,German</span>
                       </div>
                     </div>
@@ -66,9 +112,78 @@
 
 
                 </div>
-            </div>
-        </div>
-    </main>
-    
-</body>
-</html>
+              `;
+
+InfoContainer.innerHTML += InfoContent;
+          
+
+  }
+
+  getData()
+
+
+
+
+/////////////////////////////////////// DARK MODE //////////////////////////////////////
+
+
+// check for saved 'darkMode' in localStorage
+var darkMode = localStorage.getItem('darkMode'); 
+console.log("dark mode is: ")
+console.log(darkMode)
+
+const darkModeToggle = document.getElementById('darkModeToggle')
+
+const enableDarkMode = () => {
+  // 1. Add the class to the body
+  document.body.classList.add('darkmodeBody');
+  
+  document.getElementById('Header').classList.add('darkmodeHeader');
+  document.getElementById('Header').classList.remove('shadow-sm');
+  document.getElementById('Header').classList.add('darkmodeShadow');
+  document.getElementById('darkModeToggle').classList.add('darkmodeToggleBtn');
+  document.getElementById('BackBtn').classList.remove('button');
+  document.getElementById('BackBtn').classList.add('darkmodeBackBtn');
+  // 2. Update darkMode in localStorage
+  localStorage.setItem('darkMode', 'enabled');
+}
+
+const disableDarkMode = () => {
+  // 1. Remove the class from the body
+  document.body.classList.remove('darkmodeBody');
+  console.log("i'm in dis")
+ 
+  document.getElementById('Header').classList.remove('darkmodeHeader');
+  document.getElementById('Header').classList.add('shadow-sm');
+  document.getElementById('Header').classList.remove('darkmodeShadow');
+  document.getElementById('darkModeToggle').classList.remove('darkmodeToggleBtn');
+  document.getElementById('BackBtn').classList.remove('darkmodeBackBtn');
+  document.getElementById('BackBtn').classList.add('button');
+  // 2. Update darkMode in localStorage 
+  localStorage.setItem('darkMode', null);
+}
+ 
+// If the user already visited and enabled darkMode
+// start things off with it on
+if (darkMode == 'enabled') {
+  console.log("im in if")
+  enableDarkMode();
+}
+
+// When someone clicks the button
+darkModeToggle.addEventListener('click', () => {
+  // get their darkMode setting
+  darkMode = localStorage.getItem('darkMode'); 
+  
+  // if it not current enabled, enable it
+  if (darkMode !== 'enabled') { 
+    darkModeToggle.innerHTML = '<i class="fa-solid fa-sun fa-lg"></i> <span>Light Mode</span>';
+    enableDarkMode();
+  // if it has been enabled, turn it off  
+  } else {  
+    disableDarkMode(); 
+    darkModeToggle.innerHTML = '<i class="fa-regular fa-moon fa-lg SearchIcon"></i> <span>Dark Mode</span>';
+  }
+});
+
+</script>
