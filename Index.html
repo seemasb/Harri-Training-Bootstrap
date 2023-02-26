@@ -1,186 +1,198 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Countries</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
-<script src="https://kit.fontawesome.com/e3c1a62890.js" crossorigin="anonymous"></script>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Countries</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+    crossorigin="anonymous"></script>
+  <script src="https://kit.fontawesome.com/e3c1a62890.js" crossorigin="anonymous"></script>
 
 
 
-<link href="style.css" rel="stylesheet">
+  <link href="style.css" rel="stylesheet">
 </head>
+
 <body>
-    <!-- <img class="demo-bg" src="images/bg.jpg"> -->
-    <header class="navbar header shadow-sm " id="Header">
-        <div class="container">
-            <span class="title">Where in the world?</span>
-            <button type="button" class="darkMode" id="darkModeToggle">
-                <i class="fa-regular fa-moon fa-lg SearchIcon"></i>
-                <span>Dark Mode</span>
-            </button>  
-        </div>  
-    </header>
+  <!-- <img class="demo-bg" src="images/bg.jpg"> -->
+  <header class="navbar header " id="Header">
+    <div class="container">
+      <span class="title">Where in the world?</span>
+      <button type="button" class="darkMode" id="darkModeToggle">
+        <i class="fa-regular fa-moon fa-lg SearchIcon"></i>
+        <span>Dark Mode</span>
+      </button>
+    </div>
+  </header>
 
-    <main  class="MainSection pt-5">
+  <main class="MainSection pt-5">
 
-        <div class="container SearchANDdrop d-flex justify-content-between">
-            <div class="input-group">
-                <!-- <span class="input-group-text" id="basic-addon1">@</span> -->
-                <i class="fa-solid fa-magnifying-glass search " id="SearchIcon"></i>
-                <input type="text" class="form-control SearchBar shadow-sm rounded" placeholder="Search for a country..." aria-label="Username" aria-describedby="basic-addon1" id="SearchBar">
-            </div>
-
-              <div class="dropdown btn-group" id="Dropdown">
-                <button class="btn  drop_list shadow-sm rounded" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="border-radius: 5px;" id="drop_list">
-                  <span id="RegionFiltered">Filter by Region </span> <i class="fa-solid fa-caret-down " style="float: right; margin-right: -22px;" ></i>
-                </button>
-                
-
-                <ul class="dropdown-menu" id="DropMenu">
-                  <li><a class="dropdown-item" href="#"></a></li>
-                  <li><a class="dropdown-item" href="#">Africa</a></li>
-                  <li><a class="dropdown-item" href="#">Americas</a></li>
-                  <li><a class="dropdown-item" href="#">Asia</a></li>
-                </ul>
-              </div>
-        </div>
-
-
-
-
-      <div class="CardsSection container">
-            <div class="row gx-5 gy-5" id="CardsContainer">
-
-            </div>
+    <div class="container SearchANDdrop d-flex justify-content-between">
+      <div class="input-group">
+        <i class="fa-solid fa-magnifying-glass search " id="SearchIcon"></i>
+        <input type="text" class="form-control SearchBar rounded" placeholder="Search for a country..."
+          onkeyup="SearchBarOnChange()" aria-label="Username" aria-describedby="basic-addon1" id="SearchBar">
       </div>
-</main>
-    
+
+      <div class="dropdown btn-group" id="Dropdown">
+        <button class="btn  drop_list rounded" type="button" data-bs-toggle="dropdown" aria-expanded="false"
+          style="border-radius: 5px;" id="drop_list">
+          <span id="RegionFiltered">Filter by Region </span> <i class="fa-solid fa-caret-down "
+            style="float: right; margin-right: -22px;"></i>
+        </button>
+
+
+        <ul class="dropdown-menu" id="DropMenu">
+          <li><a class="dropdown-item" href="#">No Filter</a></li>
+          <li><a class="dropdown-item" href="#">Africa</a></li>
+          <li><a class="dropdown-item" href="#">Americas</a></li>
+          <li><a class="dropdown-item" href="#">Asia</a></li>
+          <li><a class="dropdown-item" href="#">Europe</a></li>
+          <li><a class="dropdown-item" href="#">Oceania</a></li>
+        </ul>
+      </div>
+    </div>
+
+
+
+
+    <div class="CardsSection container">
+      <div class="row gx-5 gy-5" id="CardsContainer">
+
+      </div>
+    </div>
+  </main>
+
 </body>
 
 
+<!-- ///////////////////////////////////////////Script code//////////////////////////////////////////// -->
+
 <script>
 
+  ////////////////////////////////////////////Declare Variables/////////////////////////////////////////////
 
-///////////////////////////////////////////////////////////////////////////////////////////////////////
-
-  // const url = 'https://restcountries.com/v3.1/alpha?codes=de,us,br,is,af,al,ax,dz'
+  let activeRequestCounter = 0;
+  let filter = '';
+  let countries = [];
   const url = 'https://restcountries.com/v3.1/all'
   const urlByName = 'https://restcountries.com/v3.1/name/'
+
+  ////////////////////////////////////////////Query dom elements/////////////////////////////////////////////
+
   const CardContainer = document.getElementById('CardsContainer');
   const SearchBar = document.getElementById('SearchBar');
-  const Dropdown = document.getElementById('Dropdown');
+  const Dropdown = document.getElementById('DropMenu');
   const RegionFiltered = document.getElementById('RegionFiltered');
-  var darkMode = localStorage.getItem('darkMode');
+  let darkMode = localStorage.getItem('darkMode');
   const darkModeToggle = document.getElementById('darkModeToggle')
-  var DropDownValue = '';
-  var DataArray;
 
-  Dropdown.addEventListener('click', function handleChange(event) {
-  console.log(event.target.text); 
-  if(!event.target.text){
-    RegionFiltered.innerHTML = "Filter by Region"
-  }
-  else {
-  // localStorage.setItem('RegionFiltered', event.target.text);
-  RegionFiltered.innerHTML = event.target.text;
-  DropDownValue = event.target.text;
-  //check the source of Data Array
-  if(!SearchBar.value){
-    //data coming from getData function
-    getData();
-  }
-  else{
-    //Data coming based on the search bar
-    getSearchBarData();
-  }
-  }
-  
-});
 
-SearchBar.addEventListener("keyup",()=>{
-    // console.log(SearchBar.value);
-          fetch(urlByName+SearchBar.value)
-          .then((response) => response.json())
-          .then((data) => {
-            if(!SearchBar.value) getData();  //to handle the case when deleting the search value
-            else {
-              // console.log(data); 
-              DataArray = data;
-              DisplayCards(); 
-                  }
-          
-          })
-          // .catch((error) => {
-          //   console.error('Error:', error);
-          //   CardContainer.innerHTML = '<div>No results found</div>'
-          // });
+  ////////////////////////////////////////////Event Listeners/////////////////////////////////////////////
 
-          
+  Dropdown.addEventListener("click", function handleChange(e) {
+
+    filter = e.target.text;
+    if (filter == "No Filter") {
+      RegionFiltered.innerHTML = "Filter by Region"
+    }
+    else {
+      RegionFiltered.innerHTML = filter;
+    }
+    debounce(renderCountries(filterCountries(countries, filter)))
   });
 
+  ////////////////////////////////////////////On Search Debounce/////////////////////////////////////////////
 
-function getSearchBarData(){
-  fetch(urlByName+SearchBar.value)
-          .then((response) => response.json())
-          .then((data) => { DataArray = data; DisplayCards();})
-}
+  const SearchBarOnChange = debounce(() => SearchBarRequest());
+
+  function debounce(func, timeout = 300) {
+    let timer;
+    return (...args) => {
+      clearTimeout(timer);
+      timer = setTimeout(() => { func.apply(this, args); }, timeout);
+    };
+  }
+
+
+  async function SearchBarRequest() {
+    let SearchBarUrl = '';
+    SearchBar.value ? (SearchBarUrl = urlByName + SearchBar.value) : SearchBarUrl = url;
+    countries = await loadCountries(SearchBarUrl);
+    renderCountries(filterCountries(countries, filter));
+
+  }
+
+  ////////////////////////////////////////////Functions/////////////////////////////////////////////
+
+  initlize();
+
+  async function initlize() {
+    countries = await loadCountries(url);
+    renderCountries(filterCountries(countries, filter));
+  }
+
+  async function loadCountries(url) {
+    activeRequestCounter++;
+    let request = activeRequestCounter;
+
+    const response = await fetch(url);
+    const CountriesData = await response.json();
+    if (request === activeRequestCounter) {
+        return CountriesData;
+      }
+  }
 
 
 
-  function DisplayCards(){
-    // console.log(DropDownValue)
-    // console.log("im in display cards")
-    const CardContainer = document.getElementById('CardsContainer');
-    CardContainer.innerHTML = '';
-    var CardContent = '';
-    // const darkMode = localStorage.getItem('darkMode');
-    var FilteredDropDownData = [];
+  function filterCountries(countries, filter) {
+    let FilteredCountries = [];
 
-    // console.log(DropDownValue)
-    if(!DropDownValue){
-      PassCardsData(DataArray);
+
+    if (filter == '' || filter == "No Filter") {
+      return countries;
     }
-    else{
-      for(let i=0; i<DataArray.length ; i++){
-        if(DataArray[i].region == DropDownValue){
-          console.log(DataArray[i])
-          FilteredDropDownData.push(DataArray[i]);
+    else {
+      for (let i = 0; i < countries.length; i++) {
+        if (countries[i].region == filter) {
+          FilteredCountries.push(countries[i]);
         }
       }
-      // console.log(FilteredDropDownData)
-      PassCardsData(FilteredDropDownData);
+
+      return FilteredCountries;
     }
 
 
   }
 
-  function PassCardsData(array){
-    // console.log("I'm in pass array cards")
-    // console.log(array)
-    darkMode = localStorage.getItem('darkMode');
-    for (let i = 0; i < array.length; i++) {
-              // console.log(array[i]);
-              const CountryFlagImg = array[i].flags.svg;
-              const CountryName = array[i].name.common;
-              const Population = array[i].population;
-              const Region = array[i].region;
-              const Capital = array[i].capital;
+  function renderCountries(countries) {
+
+    let CardContent = '';
+    CardContainer.innerHTML = '';
+
+    for (let i = 0; i < countries.length; i++) {
+      const CountryFlagImg = countries[i].flags.svg;
+      const CountryName = countries[i].name.common;
+      const Population = countries[i].population;
+      const Region = countries[i].region;
+      const Capital = countries[i].capital;
 
 
-              CardContent =
-                `
+      CardContent =
+        `
                 <div class="col-lg-3 col-md-4 col-sm-6">
-                      <a href="Info.html?${CountryName}" class="card h-100 shadow-sm " id="Card">
+                      <a href="Info.html?${CountryName}" class="card h-100" id="Card">
                         <img src=${CountryFlagImg} class="card-img-top" alt=${CountryName}>
                         <div class="card-body">
 
                           <span class="card-title country_name">${CountryName}</span>            
                         <div class="CountryInfo">
-                            <span><span class="semiBold">Population: </span>${Population}</span>
+                            <span><span class="semiBold">Population: </span>${Population.toLocaleString('en-US')}</span>
                             <span><span class="semiBold">Region: </span>${Region}</span>
                             <span><span class="semiBold">Capital: </span>${Capital}</span>
 
@@ -190,124 +202,38 @@ function getSearchBarData(){
                     </div>
               `;
 
-            
-                CardContainer.innerHTML += CardContent;
-         
 
-          }
+      CardContainer.innerHTML += CardContent;
 
 
-          if (darkMode == 'enabled') {
-          // console.log("im in if")
-          enableDarkMode();
-        }
-  }
-
-
-  async function getData() { 
-    // console.log("I'm in get data")
-          await fetch(url)
-          .then((response) => response.json())
-          .then((data) => {console.log(data); console.log("end of get data") ; DataArray=data; DisplayCards()});
-  }
-
-  getData();
-/////////////////////////////////////DARK MODE////////////////////////////////////////////////
-
-
-
-
-const enableDarkMode = () => {
-  // 1. Add the class to the body
-  document.body.classList.add('darkmodeBody');
-  var arr = document.getElementsByClassName('card');
-  for(let i = 0; i<arr.length ; i++){
-    arr[i].classList.value = 'card h-100 darkmodeCard darkmodeShadow'
-    console.log(arr[i].classList.value)
-
-  }
- 
-  document.getElementById('Header').classList.add('darkmodeHeader');
-  document.getElementById('Header').classList.remove('shadow-sm');
-  document.getElementById('Header').classList.add('darkmodeShadow');
-  document.getElementById('darkModeToggle').classList.add('darkmodeToggleBtn');
-  document.getElementById('SearchIcon').classList.remove('search');
-  document.getElementById('SearchIcon').classList.add('darkmodeSearchIcon');
-  document.getElementById('SearchBar').classList.remove('shadow-sm');
-  document.getElementById('SearchBar').classList.add('darkmodeShadow');
-  document.getElementById('SearchBar').classList.add('darkmodeSearchBar');
-  document.getElementById('drop_list').classList.remove('drop_list');
-  document.getElementById('drop_list').classList.add('darkmodedrop_list');
-  document.getElementById('drop_list').classList.remove('shadow-sm');
-  document.getElementById('drop_list').classList.add('darkmodeShadow');
-  document.getElementById('DropMenu').classList.add('darkmodeDropMenu');
-  // 2. Update darkMode in localStorage
-  localStorage.setItem('darkMode', 'enabled');
-}
-
-const disableDarkMode = () => {
-  // 1. Remove the class from the body
-  document.body.classList.remove('darkmodeBody');
-  console.log("i'm in dis")
-  var arr = document.getElementsByClassName('card');
-  for(let i = 0; i<arr.length ; i++){
-    arr[i].classList.value = 'card h-100 shadow-sm'
-    console.log(arr[i].classList.value)
+    }
 
   }
 
-  document.getElementById('Header').classList.remove('darkmodeHeader');
-  document.getElementById('Header').classList.add('shadow-sm');
-  document.getElementById('Header').classList.remove('darkmodeShadow');
-  document.getElementById('darkModeToggle').classList.remove('darkmodeToggleBtn');
-  document.getElementById('SearchIcon').classList.remove('darkmodeSearchIcon');
-  document.getElementById('SearchIcon').classList.add('search');
-  document.getElementById('SearchBar').classList.remove('darkmodeSearchBar');
-  document.getElementById('SearchBar').classList.add('shadow-sm');
-  document.getElementById('SearchBar').classList.remove('darkmodeShadow');
-  document.getElementById('drop_list').classList.remove('darkmodedrop_list');
-  document.getElementById('drop_list').classList.add('drop_list');
-  document.getElementById('drop_list').classList.add('shadow-sm');
-  document.getElementById('drop_list').classList.remove('darkmodeShadow');
-  document.getElementById('DropMenu').classList.remove('darkmodeDropMenu');
-  // 2. Update darkMode in localStorage 
-  localStorage.setItem('darkMode', null);
-}
- 
-// If the user already visited and enabled darkMode
-// start things off with it on
-if (darkMode == 'enabled') {
-  // console.log("im in if")
-  darkModeToggle.innerHTML = '<i class="fa-solid fa-sun fa-lg"></i> <span>Light Mode</span>';
-  enableDarkMode();
-}
-
-// When someone clicks the button
-darkModeToggle.addEventListener('click', () => {
-  // get their darkMode setting
-  darkMode = localStorage.getItem('darkMode'); 
-  
-  // if it not current enabled, enable it
-  if (darkMode !== 'enabled') { 
-    darkModeToggle.innerHTML = '<i class="fa-solid fa-sun fa-lg"></i> <span>Light Mode</span>';
-    enableDarkMode();
-  // if it has been enabled, turn it off  
-  } else {  
-    disableDarkMode(); 
-    darkModeToggle.innerHTML = '<i class="fa-regular fa-moon fa-lg SearchIcon"></i> <span>Dark Mode</span>';
-  }
-});
 
 
+  /////////////////////////////////////DARK MODE////////////////////////////////////////////////
 
+  var storedTheme = localStorage.getItem('theme');
+  if (storedTheme === "dark") darkModeToggle.innerHTML = '<i class="fa-solid fa-sun fa-lg"></i> <span>Light Mode</span>';
+  document.documentElement.setAttribute('data-theme', storedTheme)
 
+  // When someone clicks the button
+  darkModeToggle.addEventListener('click', () => {
+    var currentTheme = document.documentElement.getAttribute("data-theme");
 
+    if (currentTheme === "light") {
+      targetTheme = "dark";
+      darkModeToggle.innerHTML = '<i class="fa-solid fa-sun fa-lg"></i> <span>Light Mode</span>';
+    }
+    else {
+      targetTheme = "light";
+      darkModeToggle.innerHTML = '<i class="fa-regular fa-moon fa-lg SearchIcon"></i> <span>Dark Mode</span>';
+    }
 
-
-
-
-
-
+    document.documentElement.setAttribute('data-theme', targetTheme)
+    localStorage.setItem('theme', targetTheme);
+  })
 
 </script>
 
