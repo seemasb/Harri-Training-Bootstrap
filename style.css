@@ -34,10 +34,32 @@ body {
     margin-bottom: 40px;
 }
 
-.row {
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #adb5bd;
+    border-radius: 30px;
+    height: 30px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+/* .row {
     --bs-gutter-x: 4.5rem;
     --bs-gutter-y: 4.5rem;
-}
+} */
 
 .darkmodeShadow {
     box-shadow: 1px 0px 14px #11151736
@@ -131,16 +153,77 @@ body {
     color: var(--Text-color);
 }
 
+.FavList {
+    width: 100%;
+    /* height: 100vh; */
+    /* //////////// */
+    /* padding-left: 10px; */
+    padding-right: 12px;
+    overflow-y: scroll;
+
+}
+
+.OnDragOpacity {
+    opacity: 0.5;
+}
+
+.Favourites {
+    background-color: var(--Card-color);
+    box-shadow: 1px 1px 8px var(--Shadow-color);
+    /* width: 25%; */
+    height: 100vh;
+}
+
+.FavouritesTitle {
+    font-size: 23px;
+    font-family: 'Nunito Sans', sans-serif;
+    font-weight: 800;
+}
+
+.flagFav {
+    width: 34px;
+    height: 18px;
+    object-fit: cover;
+    margin-right: 3px;
+
+}
+
+.FavItemTitle {
+    font-family: 'Nunito Sans', sans-serif;
+    font-weight: 800;
+    font-size: 12px;
+}
+
+.FavItemRemove {
+    width: fit-content;
+    height: fit-content;
+    border: none;
+    border-radius: 100%;
+    font-size: x-small;
+    cursor: pointer;
+    float: right;
+    margin-top: 5px;
+    font-weight: bolder;
+}
 
 .CardsSection {
-    margin-top: 35px;
+    margin-top: 52px;
+    display: flex;
+    justify-content: space-between;
 }
 
-.row {
-    /* --bs-gutter-x: 4.5rem; */
-    /* --bs-gutter-y: 4.5rem; */
-
+#CardsContainer {
+    width: 75%;
+    overflow-y: scroll;
+    height: 100vh;
 }
+
+/* .row {
+    --bs-gutter-x: 3rem;
+    --bs-gutter-y: 5.5rem;
+
+} */
+
 
 
 .card {
@@ -174,7 +257,7 @@ body {
 .card-body {
     padding-top: 21px;
     padding-left: 25px;
-    margin-bottom: 28px;
+    /* margin-bottom: 28px; */
 }
 
 .semiBold {
@@ -448,5 +531,31 @@ a:visited {
     .CountryBox {
         width: 97px;
         font-size: 12px;
+    }
+}
+
+/* /////////////////// */
+
+.StarBtn {
+    position: inherit;
+    z-index: 1000;
+    width: fit-content;
+    height: fit-content;
+    border: none;
+    background-color: transparent;
+    float: right;
+}
+
+.SelectedStarBtn {
+    color: rgb(255, 166, 0);
+}
+
+.NotSelectedStarBtn {
+    color: rgb(187, 185, 185);
+}
+
+@media only screen and (max-width:800px) {
+    #CardsContainer {
+        width: initial;
     }
 }

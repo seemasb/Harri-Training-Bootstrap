@@ -19,7 +19,7 @@
 </head>
 
 <body>
-  <!-- <img class="demo-bg" src="images/bg.jpg"> -->
+  <!-- <img class="demo-bg" src="images/md-plus.png"> -->
   <header class="navbar header " id="Header">
     <div class="container">
       <span class="title">Where in the world?</span>
@@ -36,19 +36,21 @@
       <div class="input-group">
         <i class="fa-solid fa-magnifying-glass search " id="SearchIcon"></i>
         <input type="text" class="form-control SearchBar rounded" placeholder="Search for a country..."
-          onkeyup="SearchBarOnChange()" aria-label="Username" aria-describedby="basic-addon1" id="SearchBar">
+          aria-label="Username" aria-describedby="basic-addon1" id="SearchBar">
       </div>
 
       <div class="dropdown btn-group" id="Dropdown">
         <button class="btn  drop_list rounded" type="button" data-bs-toggle="dropdown" aria-expanded="false"
           style="border-radius: 5px;" id="drop_list">
-          <span id="RegionFiltered">Filter by Region </span> <i class="fa-solid fa-caret-down "
+          <span id="RegionFiltered">Filter by </span> <i class="fa-solid fa-caret-down "
             style="float: right; margin-right: -22px;"></i>
         </button>
 
 
+
         <ul class="dropdown-menu" id="DropMenu">
           <li><a class="dropdown-item" href="#">No Filter</a></li>
+          <li><a class="dropdown-item" href="#">Favorite</a></li>
           <li><a class="dropdown-item" href="#">Africa</a></li>
           <li><a class="dropdown-item" href="#">Americas</a></li>
           <li><a class="dropdown-item" href="#">Asia</a></li>
@@ -62,179 +64,17 @@
 
 
     <div class="CardsSection container">
-      <div class="row gx-5 gy-5" id="CardsContainer">
-
+      <div class="Favourites w-25 rounded ps-4 pt-3" id="FavSection">
+        <div class="FavouritesTitle">Favorites</div>
+        <div class="FavList pt-2 h-75" id="FavList" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+      </div>
+      <div class="row gx-5" id="CardsContainer">
       </div>
     </div>
   </main>
 
 </body>
 
-
-<!-- ///////////////////////////////////////////Script code//////////////////////////////////////////// -->
-
-<script>
-
-  ////////////////////////////////////////////Declare Variables/////////////////////////////////////////////
-
-  let activeRequestCounter = 0;
-  let filter = '';
-  let countries = [];
-  const url = 'https://restcountries.com/v3.1/all'
-  const urlByName = 'https://restcountries.com/v3.1/name/'
-
-  ////////////////////////////////////////////Query dom elements/////////////////////////////////////////////
-
-  const CardContainer = document.getElementById('CardsContainer');
-  const SearchBar = document.getElementById('SearchBar');
-  const Dropdown = document.getElementById('DropMenu');
-  const RegionFiltered = document.getElementById('RegionFiltered');
-  let darkMode = localStorage.getItem('darkMode');
-  const darkModeToggle = document.getElementById('darkModeToggle')
-
-
-  ////////////////////////////////////////////Event Listeners/////////////////////////////////////////////
-
-  Dropdown.addEventListener("click", function handleChange(e) {
-
-    filter = e.target.text;
-    if (filter == "No Filter") {
-      RegionFiltered.innerHTML = "Filter by Region"
-    }
-    else {
-      RegionFiltered.innerHTML = filter;
-    }
-    debounce(renderCountries(filterCountries(countries, filter)))
-  });
-
-  ////////////////////////////////////////////On Search Debounce/////////////////////////////////////////////
-
-  const SearchBarOnChange = debounce(() => SearchBarRequest());
-
-  function debounce(func, timeout = 300) {
-    let timer;
-    return (...args) => {
-      clearTimeout(timer);
-      timer = setTimeout(() => { func.apply(this, args); }, timeout);
-    };
-  }
-
-
-  async function SearchBarRequest() {
-    let SearchBarUrl = '';
-    SearchBar.value ? (SearchBarUrl = urlByName + SearchBar.value) : SearchBarUrl = url;
-    countries = await loadCountries(SearchBarUrl);
-    renderCountries(filterCountries(countries, filter));
-
-  }
-
-  ////////////////////////////////////////////Functions/////////////////////////////////////////////
-
-  initlize();
-
-  async function initlize() {
-    countries = await loadCountries(url);
-    renderCountries(filterCountries(countries, filter));
-  }
-
-  async function loadCountries(url) {
-    activeRequestCounter++;
-    let request = activeRequestCounter;
-
-    const response = await fetch(url);
-    const CountriesData = await response.json();
-    if (request === activeRequestCounter) {
-        return CountriesData;
-      }
-  }
-
-
-
-  function filterCountries(countries, filter) {
-    let FilteredCountries = [];
-
-
-    if (filter == '' || filter == "No Filter") {
-      return countries;
-    }
-    else {
-      for (let i = 0; i < countries.length; i++) {
-        if (countries[i].region == filter) {
-          FilteredCountries.push(countries[i]);
-        }
-      }
-
-      return FilteredCountries;
-    }
-
-
-  }
-
-  function renderCountries(countries) {
-
-    let CardContent = '';
-    CardContainer.innerHTML = '';
-
-    for (let i = 0; i < countries.length; i++) {
-      const CountryFlagImg = countries[i].flags.svg;
-      const CountryName = countries[i].name.common;
-      const Population = countries[i].population;
-      const Region = countries[i].region;
-      const Capital = countries[i].capital;
-
-
-      CardContent =
-        `
-                <div class="col-lg-3 col-md-4 col-sm-6">
-                      <a href="Info.html?${CountryName}" class="card h-100" id="Card">
-                        <img src=${CountryFlagImg} class="card-img-top" alt=${CountryName}>
-                        <div class="card-body">
-
-                          <span class="card-title country_name">${CountryName}</span>            
-                        <div class="CountryInfo">
-                            <span><span class="semiBold">Population: </span>${Population.toLocaleString('en-US')}</span>
-                            <span><span class="semiBold">Region: </span>${Region}</span>
-                            <span><span class="semiBold">Capital: </span>${Capital}</span>
-
-                        </div>
-                        </div>
-                      </a>
-                    </div>
-              `;
-
-
-      CardContainer.innerHTML += CardContent;
-
-
-    }
-
-  }
-
-
-
-  /////////////////////////////////////DARK MODE////////////////////////////////////////////////
-
-  var storedTheme = localStorage.getItem('theme');
-  if (storedTheme === "dark") darkModeToggle.innerHTML = '<i class="fa-solid fa-sun fa-lg"></i> <span>Light Mode</span>';
-  document.documentElement.setAttribute('data-theme', storedTheme)
-
-  // When someone clicks the button
-  darkModeToggle.addEventListener('click', () => {
-    var currentTheme = document.documentElement.getAttribute("data-theme");
-
-    if (currentTheme === "light") {
-      targetTheme = "dark";
-      darkModeToggle.innerHTML = '<i class="fa-solid fa-sun fa-lg"></i> <span>Light Mode</span>';
-    }
-    else {
-      targetTheme = "light";
-      darkModeToggle.innerHTML = '<i class="fa-regular fa-moon fa-lg SearchIcon"></i> <span>Dark Mode</span>';
-    }
-
-    document.documentElement.setAttribute('data-theme', targetTheme)
-    localStorage.setItem('theme', targetTheme);
-  })
-
-</script>
-
 </html>
+
+<script src="index.js"></script>
