@@ -537,7 +537,7 @@ a:visited {
 /* /////////////////// */
 
 .StarBtn {
-    position: inherit;
+    position: relative;
     z-index: 1000;
     width: fit-content;
     height: fit-content;

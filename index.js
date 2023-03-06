@@ -40,7 +40,8 @@ async function initlize() {
     })
 
     onSearch(async () => {
-        let SearchBarUrl = (SearchBar.value ? (urlByName + SearchBar.value) : url); ntries(SearchBarUrl);
+        let SearchBarUrl = (SearchBar.value ? (urlByName + SearchBar.value) : url);
+        countries = await loadCountries(SearchBarUrl);
         renderCountries(filterCountries(countries, DropDownFilter));
     })
 
@@ -85,7 +86,8 @@ function onFilterChange(cb) {
 
 function onSearch(cb) {
     document.getElementById('SearchBar').addEventListener("keyup", function handleChange(e) {
-        debounce(cb());
+        // debounce(()=>cb());
+        cb()
     })
 }
 
@@ -166,7 +168,7 @@ function renderCountries(countries) {
         CardContent =
             `
                 <div class="col-lg-4 col-md-6 col-sm-6 mh-75">
-                      <a href="Info.html?${CountryName}" class="card h-100" id=${'Card' + i} draggable="true" ondragstart="drag(event)"  ondrag="dragging(event)">
+                      <a href="Info.html?${CountryName}" class="card h-100" id=${'Card' + i} draggable="true" ondragstart="drag(event)">
                         <img src=${CountryFlagImg} class="card-img-top" alt=${CountryName} id=${'Card' + i + 'imgSrc'}>
                         <div class="card-body">
 
