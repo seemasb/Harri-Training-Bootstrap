@@ -51,7 +51,6 @@ export function renderCountries(countries, favouriteCountries, addToFavHandler, 
             toggleFavBtn.addEventListener('click', (e) => {
                 e.preventDefault()
                 if (toggleFavBtn.classList.contains('SelectedStarBtn')) {
-                    console.log("selected")
                     removeFavBtnHandler(country.cca2)
                     toggleFavBtn.classList.remove('SelectedStarBtn');
                     toggleFavBtn.classList.add('NotSelectedStarBtn');

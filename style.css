@@ -568,10 +568,16 @@ a:visited {
     #CardsContainer {
         /* width: 100%; */
     }
+    .StarBtn {
+        display: block;
+    }
 }
 
 @media only screen and (min-width:900px) {
    .StarBtn {
         display: none;
+    }
+    #FavSection {
+        display: block;
     }
 }
