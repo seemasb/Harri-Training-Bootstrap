@@ -12,10 +12,8 @@
     integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
     crossorigin="anonymous"></script>
   <script src="https://kit.fontawesome.com/e3c1a62890.js" crossorigin="anonymous"></script>
-
-
-
   <link href="style.css" rel="stylesheet">
+  <script src="./scripts/Home.js" type="module"></script>
 </head>
 
 <body>
@@ -49,7 +47,7 @@
 
 
         <ul class="dropdown-menu" id="DropMenu">
-          <li><a class="dropdown-item" href="#">No Filter</a></li>
+          <li><a class="dropdown-item" href="#" data-value="hello">No Filter</a></li>
           <li><a class="dropdown-item" href="#">Favorite</a></li>
           <li><a class="dropdown-item" href="#">Africa</a></li>
           <li><a class="dropdown-item" href="#">Americas</a></li>
@@ -66,7 +64,7 @@
     <div class="CardsSection container">
       <div class="Favourites w-25 rounded ps-4 pt-3" id="FavSection">
         <div class="FavouritesTitle">Favorites</div>
-        <div class="FavList pt-2 h-75" id="FavList" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        <div class="FavList pt-2 h-75" id="FavList"></div>
       </div>
       <div class="row gx-5 gy-3" id="CardsContainer">
       </div>
@@ -77,4 +75,3 @@
 
 </html>
 
-<script src="index.js"></script>
